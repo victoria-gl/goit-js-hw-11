@@ -22,7 +22,7 @@ async function onSubmit(evt) {
   console.log(searchQuery);
 
   try {
-    const { data } = await fetchData(page, query); 
+    const { data } = await fetchData(query, page); 
     const { totalHits, total, hits } = data;
     if (hits.length === 0) {
 
@@ -43,7 +43,7 @@ async function onSubmit(evt) {
 async function onClick(evt) {
   page += 1;
   try {
-    const { data } = await fetchData(page, query); 
+    const { data } = await fetchData(query, page); 
     const { totalHits, total, hits } = data;
     ulEl.insertAdjacentHTML('beforeend', createMarkup(hits))
     const lastPage = Math.ceil(totalHits / perPage)
