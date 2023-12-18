@@ -30,7 +30,6 @@ const fetchData = async (page, query) => {
   }
 };
 
-
 const formEl = document.querySelector('.js-search-form');
 const ulEl = document.querySelector('.js-gallery');
 const moreBtnEl = document.querySelector('.js-load-more');
@@ -48,19 +47,16 @@ async function onSubmit(evt) {
   const searchQuery = evt.target.elements['user-search-query'].value.trim()
   query = searchQuery;
   console.log(searchQuery);
-
   try {
     const { data } = await fetchData(page, query); 
     const { totalHits, total, hits } = data;
     if (hits.length === 0) {
-
-      load-more.style.visibility('hidden');
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
     ulEl.innerHTML = createMarkup(hits);
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
     if (totalHits > perPage) {
-      load-more.style.visibility('hidden');
+      moreBtnEl.classList.remove('is-hidden');
     }
 
   } catch (error) {
@@ -77,7 +73,7 @@ async function onClick(evt) {
     const lastPage = Math.ceil(totalHits / perPage)
     if (lastPage === page) {
       Notiflix.Notify.failure('We are sorry, but you have reached the end of search results.');
-      load-more.style.visibility('hidden');
+      moreBtnEl.setAttribute("style", "display: none;")
     }
     
   } catch (error) {
