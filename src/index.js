@@ -32,7 +32,7 @@ async function onSubmit(evt) {
     ulEl.innerHTML = createMarkup(hits);
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
     if (totalHits > perPage) {
-      moreBtnEl.classList.remove('is-hidden');
+      // moreBtnEl.classList.remove('is-hidden');
       load-more.style.visibility('hidden');
     }
 
