@@ -41,9 +41,6 @@ ol {
 .container {
     margin: auto;
     padding: 30px;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
     background-color: rgb(240, 237, 234);
 }
 
