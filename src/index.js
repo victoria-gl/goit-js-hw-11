@@ -1,6 +1,34 @@
 import Notiflix, { Notify } from "notiflix";
-// import axios from 'axios';
-import { fetchData } from './api-services';
+// import { fetchData } from './api-services';
+import axios from 'axios';
+
+const BASE_URL = "https://pixabay.com/api/";
+const API_KEY = "41267904-288ba903f65ff7510d19cbcee";
+const perPage = 40;
+
+
+const fetchData = async (page, query) => {
+  try {
+      return await axios.get(`${BASE_URL}`, {
+          params: {
+              key: API_KEY,
+              q: query,
+              image_type: "photo",
+              orientation: "horizontal",
+              safesearch: true,
+              page: page,
+              per_page: perPage,
+
+        }
+      });
+
+    // return response.data;
+
+  } catch (error) {
+    // Handle error
+    console.error(error);
+  }
+};
 
 
 const formEl = document.querySelector('.js-search-form');
@@ -22,7 +50,7 @@ async function onSubmit(evt) {
   console.log(searchQuery);
 
   try {
-    const { data } = await fetchData(query, page); 
+    const { data } = await fetchData(page, query); 
     const { totalHits, total, hits } = data;
     if (hits.length === 0) {
 
@@ -43,7 +71,7 @@ async function onSubmit(evt) {
 async function onClick(evt) {
   page += 1;
   try {
-    const { data } = await fetchData(query, page); 
+    const { data } = await fetchData(page, query); 
     const { totalHits, total, hits } = data;
     ulEl.insertAdjacentHTML('beforeend', createMarkup(hits))
     const lastPage = Math.ceil(totalHits / perPage)
