@@ -32,7 +32,6 @@ async function onSubmit(evt) {
     ulEl.innerHTML = createMarkup(hits);
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
     if (totalHits > perPage) {
-      // moreBtnEl.classList.remove('is-hidden');
       load-more.style.visibility('hidden');
     }
 
@@ -50,7 +49,7 @@ async function onClick(evt) {
     const lastPage = Math.ceil(totalHits / perPage)
     if (lastPage === page) {
       Notiflix.Notify.failure('We are sorry, but you have reached the end of search results.');
-      moreBtnEl.classList.add('is-hidden')
+      load-more.style.visibility('hidden');
     }
     
   } catch (error) {
