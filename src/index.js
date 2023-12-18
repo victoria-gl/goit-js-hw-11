@@ -73,7 +73,7 @@ async function onClick(evt) {
     const lastPage = Math.ceil(totalHits / perPage)
     if (lastPage === page) {
       Notiflix.Notify.failure('We are sorry, but you have reached the end of search results.');
-      moreBtnEl.setAttribute("style", "display: none;")
+      // moreBtnEl.setAttribute("style", "display: none;")
     }
     
   } catch (error) {
