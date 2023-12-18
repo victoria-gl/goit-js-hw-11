@@ -75,8 +75,12 @@ async function onClick(evt) {
       Notiflix.Notify.failure('We are sorry, but you have reached the end of search results.');
       // moreBtnEl.setAttribute("style", "display: none;")
     }
+    else if (totalHits <= 40) {
+       moreBtnEl.setAttribute("style", "display: none;")
+    }
     
-  } catch (error) {
+  } 
+  catch (error) {
     console.log(error.message);
   }
 }
